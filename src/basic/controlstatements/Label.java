@@ -1,4 +1,4 @@
-package basic.control_statements;
+package basic.controlstatements;
 
 import java.util.ArrayList;
 import java.util.List;

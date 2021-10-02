@@ -1,4 +1,4 @@
-package basic.control_statements;
+package basic.controlstatements;
 
 public class EnhancedForLoop {
 
