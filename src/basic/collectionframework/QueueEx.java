@@ -1,6 +1,7 @@
 package basic.collectionframework;
 
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class QueueEx {
@@ -26,6 +27,16 @@ public class QueueEx {
         System.out.println(queue); // [나, 다, 라, 마]
         System.out.println(queue.poll()); // 나 (만약 데이터가 없다면 null 반환)
         System.out.println(queue); // [다, 라, 마]
+
+        /*
+            우선순위 큐는 데이터가 추가된 순서에 상관없이 정렬된 순서로 꺼낸다.
+         */
+        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();
+        priorityQueue.add(3);
+        priorityQueue.add(2);
+        priorityQueue.add(1);
+        System.out.println(priorityQueue.poll()); // 1
+        System.out.println(priorityQueue.poll()); // 2
     }
 
 }
