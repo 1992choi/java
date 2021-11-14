@@ -10,6 +10,7 @@ public class LinearSearch {
         for (int i = 0; i < num.length; i++) {
             if (num[i] == findNum) {
                 idx = i;
+                break;
             }
         }
 
