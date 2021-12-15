@@ -1,7 +1,5 @@
 package algorithm.codingtest.cospro.exam05;
 
-import com.sun.deploy.util.StringUtils;
-
 public class Solution06 {
 
     public String solution(String s1, String s2, int p, int q) {
