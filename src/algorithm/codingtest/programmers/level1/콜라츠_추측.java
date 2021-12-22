@@ -1,7 +1,5 @@
 package algorithm.codingtest.programmers.level1;
 
-import java.util.Arrays;
-
 // https://programmers.co.kr/learn/courses/30/lessons/12943
 public class 콜라츠_추측 {
 
