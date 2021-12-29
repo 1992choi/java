@@ -1,6 +1,6 @@
 package algorithm.codingtest.programmers.level1;
 
-// https://programmers.co.kr/learn/courses/30/lessons/17681
+// https://programmers.co.kr/learn/courses/30/lessons/82612
 public class 부족한_금액_계산하기 {
 
     public static long solution(int price, int money, int count) {
