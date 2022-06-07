@@ -1,4 +1,4 @@
-package basic.object;
+package basic.clazz.object;
 
 import java.util.Objects;
 
