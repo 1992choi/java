@@ -1,6 +1,6 @@
 package basic.clazz.string;
 
-public class valueOfEx {
+public class ValueOfEx {
 
     public static void main(String[] args) {
         /*
