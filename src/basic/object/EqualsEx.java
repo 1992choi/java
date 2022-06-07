@@ -1,7 +1,5 @@
 package basic.object;
 
-import java.util.Objects;
-
 class Person1 {
     long id;
 
