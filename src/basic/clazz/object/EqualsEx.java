@@ -1,4 +1,4 @@
-package basic.object;
+package basic.clazz.object;
 
 class Person1 {
     long id;
