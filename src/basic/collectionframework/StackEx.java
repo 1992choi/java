@@ -5,6 +5,7 @@ import java.util.Stack;
 public class StackEx {
 
     public static void main(String[] args) {
+        // LIFO(Last In First Out) : 마지막에 저장된 것을 제일 먼저 꺼낸다.
         Stack<String> stack = new Stack<>();
         // 데이터 추가
         stack.push("가");

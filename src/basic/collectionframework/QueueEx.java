@@ -7,6 +7,7 @@ import java.util.Queue;
 public class QueueEx {
 
     public static void main(String[] args) {
+        // FIFO(First In First Out) : 먼저 저장한 것을 제일 먼저 꺼낸다.
         Queue<String> queue = new LinkedList<>();
         // 데이터 추가 : add(), offer()
         queue.add("가");
