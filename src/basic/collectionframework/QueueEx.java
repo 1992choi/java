@@ -1,8 +1,6 @@
 package basic.collectionframework;
 
-import java.util.LinkedList;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.*;
 
 public class QueueEx {
 
@@ -38,6 +36,44 @@ public class QueueEx {
         priorityQueue.add(1);
         System.out.println(priorityQueue.poll()); // 1
         System.out.println(priorityQueue.poll()); // 2
+
+        // 큐활용 - 명렁어 히스토리
+        queue = new LinkedList<>();
+        List<String> commandList = Arrays.asList("ls", "cd", "top", "ps", "ll", "df", "du");
+        int maxSize = 5;
+
+        for (String command : commandList) {
+            queue.offer(command);
+            if (queue.size() > maxSize) {
+                queue.poll();
+            }
+
+            System.out.println("\n[user Input] : " + command + "\n[queue] : " + queue);
+        }
+        /*
+            - Console
+
+                [user Input] : ls
+                [queue] : [ls]
+
+                [user Input] : cd
+                [queue] : [ls, cd]
+
+                [user Input] : top
+                [queue] : [ls, cd, top]
+
+                [user Input] : ps
+                [queue] : [ls, cd, top, ps]
+
+                [user Input] : ll
+                [queue] : [ls, cd, top, ps, ll]
+
+                [user Input] : df
+                [queue] : [cd, top, ps, ll, df]
+
+                [user Input] : du
+                [queue] : [top, ps, ll, df, du]
+         */
     }
 
 }
