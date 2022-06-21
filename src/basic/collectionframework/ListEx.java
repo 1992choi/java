@@ -87,6 +87,10 @@ public class ListEx {
         System.out.println(listA); // [A, B, C, H]
         System.out.println(listB); // [B, C]
 
+        // Arrays.asList()를 사용한 ArrayList 생성
+        List<String> arraysAsList = new ArrayList(Arrays.asList("A", "B", "C", "D"));
+
+
 
         /* Vector - ArrayList와 유사하나 동기화 메서드로 구현되어 있어 멀티 쓰레드에 적합하다. */
         List<String> vector = new Vector<>();
