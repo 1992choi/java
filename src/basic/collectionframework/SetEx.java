@@ -111,6 +111,29 @@ public class SetEx {
             kim(31)
             choi(20)
          */
+
+
+        // 집합 (합집합, 교집합, 차집합)
+        Set<Integer> setA = new HashSet<>();
+        Set<Integer> setB = new HashSet<>();
+
+        // 값 초기화
+        setA.add(1); setA.add(2); setA.add(3); setA.add(4); setA.add(5);
+        System.out.println(setA); // [1, 2, 3, 4, 5]
+        setB.add(4); setB.add(5); setB.add(6); setB.add(7); setB.add(8);
+        System.out.println(setB); // [4, 5, 6, 7, 8]
+
+        // 교집합. 공통된 요소만 남기고 삭제
+//        setA.retainAll(setB);
+//        System.out.println(setA); // [4, 5]
+
+        // 합집합. 모든 요소를 합함
+//        setA.addAll(setB);
+//        System.out.println(setA); // [1, 2, 3, 4, 5, 6, 7, 8]
+
+        // 차집합. 공통 요소를 제거
+        setA.removeAll(setB);
+        System.out.println(setA); // [1, 2, 3]
     }
 
 }
