@@ -72,6 +72,90 @@ public class SetEx {
         System.out.println(treeSet.tailSet("다", false)); // [라, 마, 바] : 파리미터 초과 데이터(포함x)
         System.out.println(treeSet.subSet("나", "라")); // [나, 다]
         System.out.println(treeSet.subSet("나", true, "라", true)); // [나, 다, 라]
+
+
+        // 객체 데이터 예제 - equals()와 hashCode() 오버라이딩
+        Set<Person> hashSet1 = new HashSet<>();
+        hashSet1.add(new Person("choi", 20));
+        hashSet1.add(new Person("kim", 31));
+        hashSet1.add(new Person("choi", 31));
+        hashSet1.add(new Person("choi", 20));
+        hashSet1.add(new Person("kim", 40));
+        Iterator<Person> iterator1 = hashSet1.iterator();
+        while (iterator1.hasNext()) {
+            System.out.println(iterator1.next());
+        }
+        /*
+            choi(20)
+            kim(31)
+            choi(31)
+            kim(40)
+         */
+
+
+        // 객체 데이터 예제 - equals()와 hashCode() 오버라이딩 안함
+        Set<Person2> hashSet2 = new HashSet<>();
+        hashSet2.add(new Person2("choi", 20));
+        hashSet2.add(new Person2("kim", 31));
+        hashSet2.add(new Person2("choi", 31));
+        hashSet2.add(new Person2("choi", 20));
+        hashSet2.add(new Person2("kim", 40));
+        Iterator<Person2> iterator2 = hashSet2.iterator();
+        while (iterator2.hasNext()) {
+            System.out.println(iterator2.next());
+        }
+        /*
+            kim(40)
+            choi(20)
+            choi(31)
+            kim(31)
+            choi(20)
+         */
     }
 
+}
+
+class Person {
+    String name;
+    int age;
+
+    Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return name + "(" + age + ")";
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Person)) {
+            return false;
+        }
+
+        Person p = (Person)obj;
+        return this.name.equals(p.name) && this.age == p.age;
+    }
+}
+
+class Person2 {
+    String name;
+    int age;
+
+    Person2(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return name + "(" + age + ")";
+    }
 }
