@@ -88,6 +88,21 @@ public class MapEx {
         System.out.println(treeMap.tailMap(3)); // {3=자, 4=가, 5=하}
         System.out.println(treeMap.tailMap(3, true)); // {3=자, 4=가, 5=하}
         System.out.println(treeMap.tailMap(3, false)); // {4=가, 5=하}
+
+        /*
+            선언과 동시에 초기화
+            - 이중 중괄호 구문을 사용하여 구현할 수 있으나,
+              익명의 추가 클래스를 생성하기 때문에 메모리 누수 문제가 발생할 수 있다.
+        */
+        Map<String, String> initMap = new HashMap() {
+            {
+                put("choi", "10");
+                put("choi", "31");
+                put("kim", "20");
+                put("lee", "40");
+            }
+        };
+        System.out.println(initMap); // {choi=31, lee=40, kim=20}
     }
 
 }
