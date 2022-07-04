@@ -1,4 +1,4 @@
-package basic.interfaces;
+package basic.lambda;
 
 import java.text.DecimalFormat;
 import java.util.function.*;

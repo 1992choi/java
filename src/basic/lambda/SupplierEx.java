@@ -1,4 +1,4 @@
-package basic.interfaces;
+package basic.lambda;
 
 import java.util.Random;
 import java.util.function.Supplier;
