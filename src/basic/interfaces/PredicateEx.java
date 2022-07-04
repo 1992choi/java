@@ -50,6 +50,17 @@ public class PredicateEx {
         // OR연산
         result = cond1.or(cond2).test(15);
         System.out.println(result); // true
+
+
+
+        /*
+            isEquals 연산
+            - 인자로 전달된 객체와 같은지 확인한다.
+         */
+        String str1 = new String("abc");
+        String str2 = new String("abc");
+        Predicate<String> IsEqualPredicate = Predicate.isEqual(str1);
+        System.out.println(IsEqualPredicate.test(str2)); // true
     }
 
 }
