@@ -3,6 +3,14 @@ package basic.lambda;
 
 import java.util.function.Function;
 
+class User {
+    String name;
+
+    User(String name) {
+        this.name = name;
+    }
+}
+
 public class MethodReferenceEx {
 
     public static void main(String[] args) {
@@ -20,6 +28,19 @@ public class MethodReferenceEx {
         Function<String, Integer> f2 = Integer::parseInt;
         int num2 = f2.apply("008");
         System.out.println(num2); // 8
+
+
+
+        // 람다 생성자 참조
+        Function<String, User> f3 = s -> new User(s);
+        User user1 = f3.apply("choi");
+        System.out.println(user1.name); // choi
+
+        // 메서드 생성자 참조
+        Function<String, User> f4 = User::new;
+        User user2 = f4.apply("yg");
+        System.out.println(user2.name); // yg
+
     }
 
 }
