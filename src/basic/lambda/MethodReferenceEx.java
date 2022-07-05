@@ -1,6 +1,7 @@
 package basic.lambda;
 
 
+import java.util.Arrays;
 import java.util.function.Function;
 
 class User {
@@ -41,6 +42,17 @@ public class MethodReferenceEx {
         User user2 = f4.apply("yg");
         System.out.println(user2.name); // yg
 
+
+
+        // 람다로 배열 생성
+        Function<Integer, int[]> f5 = i -> new int[i];
+        int[] arr1 = f5.apply(3);
+        System.out.println(Arrays.toString(arr1)); // [0, 0, 0]
+
+        // 메서드 참조로 배열 생성
+        Function<Integer, int[]> f6 = int[]::new;
+        int[] arr2 = f6.apply(5);
+        System.out.println(Arrays.toString(arr2)); // [0, 0, 0, 0, 0]
     }
 
 }
