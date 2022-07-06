@@ -35,6 +35,31 @@ public class IntermediateOperation {
         Stream<String> mapStream = originStream.map(s -> s.toUpperCase());
         mapStream.forEach(s -> System.out.print(s + " ")); // JAVA JAVA C C++ C++ JAVASCRIPT CSS HTML GO PYTHON
 
+        System.out.println("\n\n--- flatMap ---");
+        /*
+            flatMap
+            - 스트림의 형태가 배열과 같을 때, 모든 원소를 단일 원소 스트림으로 반환
+            - map과의 차이점 : map 메서드는 스트림의 스트림을 반환하는 반면에 flatMap 메서드는 스트림을 반환한다.
+                            따라서 출력을 했을 때, 아래와 같은 차이를 지닌다.
+         */
+        String[][] namesArray = new String[][]{
+                {"kim", "choi"}, {"lee", "park"}};
+
+        // map #1
+        Arrays.stream(namesArray)
+                .map(inner -> Arrays.stream(inner))
+                .forEach(s -> System.out.print(s + " ")); // java.util.stream.ReferencePipeline$Head@5caf905d java.util.stream.ReferencePipeline$Head@27716f4
+
+        // map #2
+        Arrays.stream(namesArray)
+                .map(inner -> Arrays.stream(inner))
+                .forEach(names -> names.forEach(s -> System.out.print(s + " "))); // kim choi lee park
+
+        // flatMap
+        Arrays.stream(namesArray)
+                .flatMap(inner -> Arrays.stream(inner))
+                .forEach(s -> System.out.print(s + " ")); // kim choi lee park
+
         System.out.println("\n\n--- limit ---");
         originStream = list.stream();
         Stream<String> limitStream = originStream.limit(3); // 3개까지 추출
