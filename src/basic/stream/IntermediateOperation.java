@@ -50,6 +50,48 @@ public class IntermediateOperation {
         Stream<String> sortedStream = originStream.sorted();
         sortedStream.forEach(s -> System.out.print(s + " ")); // c c++ c++ css go html java java javascript python
 
+        System.out.println("\n\n--- peek ---");
+        originStream = list.stream();
+        Stream<String> peekStream = originStream.sorted();
+        peekStream
+                .map(s -> s.toUpperCase())
+                .peek(s -> System.out.println("1. " + s ))
+                .distinct()
+                .peek(s -> System.out.println("2. " + s))
+                .forEach(s -> System.out.println("3. " + s));
+        /*
+            - peek : 스트림의 요소를 소비하지 않고 확인할 수 있다. (중간에 데이터 처리 과정을 볼 수 있다.)
+            - forEach와의 차이점
+                  : peek = 중간연산(스트림을 소비하지 않는다)
+                  : forEach = 최종연산(스트림을 소비한다)
+            - 실행 결과
+            1. C
+            2. C
+            3. C
+            1. C++
+            2. C++
+            3. C++
+            1. C++
+            1. CSS
+            2. CSS
+            3. CSS
+            1. GO
+            2. GO
+            3. GO
+            1. HTML
+            2. HTML
+            3. HTML
+            1. JAVA
+            2. JAVA
+            3. JAVA
+            1. JAVA
+            1. JAVASCRIPT
+            2. JAVASCRIPT
+            3. JAVASCRIPT
+            1. PYTHON
+            2. PYTHON
+            3. PYTHON
+         */
     }
 
 }
