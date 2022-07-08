@@ -10,7 +10,7 @@ public class TerminalOperation {
 
         /*
             * 최종 연산(Terminal Operation)
-              - 출력 : forEach()
+              - 출력 : forEach(), forEachOrdered()
               - 소모 : reduce()
               - 검색 : findFirst(), findAny()
               - 검사 : anyMatch(), allMatch(), noneMatch()
@@ -24,6 +24,22 @@ public class TerminalOperation {
         Arrays.asList(5, 6, 8, 1, 9, 1, 3, 8, 7)
                 .stream()
                 .forEach(s -> System.out.print(s + " ")); // 5 6 8 1 9 1 3 8 7
+
+
+
+        System.out.println("\n\n--- forEach(parallel) ---");
+        Arrays.asList(5, 6, 8, 1, 9, 1, 3, 8, 7)
+                .stream()
+                .parallel() // 병렬처리
+                .forEach(s -> System.out.print(s + " ")); // 1 9 8 7 3 8 1 6 5 : 병렬처리로 인하여 순서가 보장되지 않는다.
+
+
+
+        System.out.println("\n\n--- forEachOrdered(parallel) ---");
+        Arrays.asList(5, 6, 8, 1, 9, 1, 3, 8, 7)
+                .stream()
+                .parallel() // 병렬처리
+                .forEachOrdered(s -> System.out.print(s + " ")); // 5 6 8 1 9 1 3 8 7 : forEachOrdered를 사용하면 순서가 보장된다.
 
 
 
