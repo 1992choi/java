@@ -6,7 +6,7 @@ public class Doit001 {
         int answer = 0;
         for (int i = 0; i < count; i++) {
             // answer += Integer.parseInt(String.valueOf(str.charAt(i)));
-            answer += str.charAt(i) - '0';
+            answer += str.charAt(i) - '0'; // 문자열을 숫자형으로 변경하기 위하여 '0'을 뺀다. 또는 아스키코드 값을 계산한 형태인 'str.charAt(i) - 48' 으로 작성
         }
         return answer;
     }
