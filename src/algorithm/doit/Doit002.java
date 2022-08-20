@@ -3,19 +3,31 @@ package algorithm.doit;
 public class Doit002 {
 
     static double solution(int count, int[] score) {
-        double answer = 0;
-        int max = 0;
+//        double answer = 0;
+//        int max = 0;
+//        for (int i = 0; i < count; i++) {
+//            if (max < score[i]) {
+//                max = score[i];
+//            }
+//        }
+//
+//        for (int i = 0; i < count; i++) {
+//            answer += (double) score[i] / max * 100;
+//        }
+//
+//        return answer / count;
+
+        // 수식을 사용하여 코드 단순화
+        long max = 0;
+        long sum = 0;
         for (int i = 0; i < count; i++) {
             if (max < score[i]) {
                 max = score[i];
             }
+            sum += score[i];
         }
 
-        for (int i = 0; i < count; i++) {
-            answer += (double) score[i] / max * 100;
-        }
-
-        return answer / count;
+        return sum * 100.0 / max / count;
     }
 
     public static void main(String[] args) {
