@@ -58,6 +58,46 @@ public class ComparePerformance {
         sum = list.stream().reduce(0L, Long::sum);
         System.out.println("sum = " + sum + " [" + (System.currentTimeMillis() - start) + "ms]"); // sum = 49999995000000 [69ms]
 
+        /*  컴파일된 클래스파일 소스
+                List<Long> list = new ArrayList();
+                long start;
+                for(start = 0L; start < 10000000L; ++start) {
+                    list.add(start);
+                }
+
+
+                start = System.currentTimeMillis();
+                int size = list.size();
+                long sum = 0L;
+                int i;
+                for(i = 0; i < size; ++i) {
+                    sum += (Long)list.get(i);
+                }
+                System.out.println("sum = " + sum + " [" + (System.currentTimeMillis() - start) + "ms]");
+
+
+                start = System.currentTimeMillis();
+                sum = 0L;
+                for(i = 0; i < list.size(); ++i) {
+                    sum += (Long)list.get(i);
+                }
+                System.out.println("sum = " + sum + " [" + (System.currentTimeMillis() - start) + "ms]");
+
+
+                start = System.currentTimeMillis();
+                sum = 0L;
+                long l;
+                for(Iterator var10 = list.iterator(); var10.hasNext(); sum += l) {
+                    l = (Long)var10.next();
+                }
+                System.out.println("sum = " + sum + " [" + (System.currentTimeMillis() - start) + "ms]");
+
+
+                start = System.currentTimeMillis();
+                sum = (Long)list.stream().reduce(0L, Long::sum);
+                System.out.println("sum = " + sum + " [" + (System.currentTimeMillis() - start) + "ms]");
+         */
+
 
         /** 값 변경 로직 시간측정 */
         List<User> users = new ArrayList<>();
@@ -91,6 +131,45 @@ public class ComparePerformance {
         start = System.currentTimeMillis();
         users.stream().forEach(x -> x.setName(x.getName() + "_NEW"));
         System.out.println("users[0] = " + users.get(0).getName() + " [" + (System.currentTimeMillis() - start) + "ms]"); // users[0] = user_0_NEW_NEW_NEW_NEW [463ms]
+
+        /*  컴파일된 클래스파일 소스
+                List<User> users = new ArrayList();
+                int i;
+                for(i = 0; i < 10000000; ++i) {
+                    users.add(new User("user_" + i));
+                }
+
+
+                start = System.currentTimeMillis();
+                size = users.size();
+                for(i = 0; i < size; ++i) {
+                    ((User)users.get(i)).setName(((User)users.get(i)).getName() + "_NEW");
+                }
+                System.out.println("users[0] = " + ((User)users.get(0)).getName() + " [" + (System.currentTimeMillis() - start) + "ms]");
+
+
+                start = System.currentTimeMillis();
+                for(i = 0; i < list.size(); ++i) {
+                    ((User)users.get(i)).setName(((User)users.get(i)).getName() + "_NEW");
+                }
+                System.out.println("users[0] = " + ((User)users.get(0)).getName() + " [" + (System.currentTimeMillis() - start) + "ms]");
+
+
+                start = System.currentTimeMillis();
+                Iterator var13 = users.iterator();
+                while(var13.hasNext()) {
+                    User user = (User)var13.next();
+                    user.setName(user.getName() + "_NEW");
+                }
+                System.out.println("users[0] = " + ((User)users.get(0)).getName() + " [" + (System.currentTimeMillis() - start) + "ms]");
+
+
+                start = System.currentTimeMillis();
+                users.stream().forEach((x) -> {
+                    x.setName(x.getName() + "_NEW");
+                });
+                System.out.println("users[0] = " + ((User)users.get(0)).getName() + " [" + (System.currentTimeMillis() - start) + "ms]");
+         */
     }
 
 }
