@@ -1,5 +1,13 @@
 package algorithm.doit;
 
+/*
+    새로운 평균 구하기
+    => 과목 중 최고점 M을 구해서 모든 점수에 아래의 식을 대입하여 다시 평균을 구한다.
+       새로운 점수 계산법 : '점수 / M * 100'
+
+    count = 과목 갯수
+    score = 과목 점수
+ */
 public class Doit002 {
 
     static double solution(int count, int[] score) {

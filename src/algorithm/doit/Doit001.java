@@ -1,5 +1,10 @@
 package algorithm.doit;
 
+/*
+    문자열이 주어질 때, 각 자리의 합 구하기
+    count = 숫자 갯수
+    str = 숫자로 구성된 문자열
+ */
 public class Doit001 {
 
     static int solution(int count, String str) {

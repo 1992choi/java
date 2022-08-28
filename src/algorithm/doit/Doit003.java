@@ -2,9 +2,9 @@ package algorithm.doit;
 
 import java.util.Arrays;
 
-public class Doit003 {
+/*
+        구간 합 구하기
 
-    /*
         arr : 구간 합을 구할 대상 배열
         range : 영역
                 Ex) range = {
@@ -20,6 +20,8 @@ public class Doit003 {
         * 구간합을 미리 구하지 않을 경우, 매번 주어진 구간(range)에 대하여 더하는 작업을 반복해야하므로 비효율적이다.
           따라서 구간합을 미리 구하고 이를 사용하게 될 경우, 시간 복잡도를 줄일 수 있다.
      */
+public class Doit003 {
+
     static long[] solution(int[] arr, int[][] range) {
         long[] answer = new long[range.length];
 
