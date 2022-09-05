@@ -1,7 +1,5 @@
 package algorithm.doit;
 
-import java.util.Arrays;
-
 public class Doit012 {
 
     /*
