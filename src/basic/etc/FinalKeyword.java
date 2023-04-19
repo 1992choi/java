@@ -18,7 +18,7 @@ class NormalChildClass extends NormalClass {
 
 
 
-/** final 메소드 */
+/** final 메서드 */
 class ParentClass {
 
     void normalMethod() {
@@ -45,17 +45,33 @@ class ChildClass extends ParentClass {
 //    }
 
 }
-/** final 메소드 */
+/** final 메서드 */
 
 
 
 public class FinalKeyword {
 
-    /** final 변수 */
-    int normalVariable = 0;
-    final int finalVariable = 0;
+    /** final 변수 - 인스턴스 변수 */
+    final int finalVar1;
+    final int finalVar2;
 
-    public void test() {
+    // 생성자를 통한 값 할당
+    FinalKeyword() {
+        finalVar1 = 1;
+    }
+
+    // 초기화블럭을 통한 값 할당
+    {
+        finalVar2 = 2;
+    }
+    /** final 변수 - 인스턴스 변수 */
+    
+
+    /** final 변수 */
+    public void finalTest() {
+        int normalVariable = 0;
+        final int finalVariable = 0;
+
         normalVariable = 1;
         // finalVariable = 1; // 오류. Cannot assign a value to final variable 'finalVariable'
     }
