@@ -11,7 +11,7 @@ package basic.clazz;
     }
 */
 abstract class AnimalUsingAbs {
-    void cry() {}
+    abstract void cry();
 }
 
 class BirdUsingAbs extends AnimalUsingAbs {
