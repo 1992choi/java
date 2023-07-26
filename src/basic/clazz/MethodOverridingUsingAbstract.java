@@ -15,18 +15,21 @@ abstract class AnimalUsingAbs {
 }
 
 class BirdUsingAbs extends AnimalUsingAbs {
+    @Override
     void cry() {
         System.out.println("짹짹");
     }
 }
 
 class CatUsingAbs extends AnimalUsingAbs {
+    @Override
     void cry() {
         System.out.println("야옹");
     }
 }
 
 class DogUsingAbs extends AnimalUsingAbs {
+    @Override
     void cry() {
         System.out.println("멍멍");
     }
