@@ -19,7 +19,9 @@ public class LambdaSample {
 
 
         /*
-         *  Square(int num)를 통해 a가 int일 수 밖에 없으므로 int를 생략할 수 있다.
+         *  1. 매개변수의 타입을 추론할 수 있는 경우에는 타입을 생략할 수 있다.
+         *     - Square(int num)를 통해 a가 int일 수 밖에 없으므로 int를 생략할 수 있다.
+         *     - (int a)가 (a)로 변경되었다.
          */
         SquareIF sif2 = (a) -> {
             return a * a;
@@ -28,7 +30,8 @@ public class LambdaSample {
 
 
         /*
-         *  인자가 하나일 경우 소괄호도 생략 가능하다.
+         *  2. 매개변수가 하나인 경우는 소괄호를 생략할 수 있다.
+         *     - 1번 규칙에 의해 (a)로 변경되었으며, 매개변수가 1개이기 때문에 소괄호도 생략 가능하여 a가 되었다.
          */
         SquareIF sif3 = a -> {
             return a * a;
@@ -37,8 +40,7 @@ public class LambdaSample {
 
 
         /*
-         *  로직이 한줄일 경우, 중괄호도 생략 가능하다.
-         *  다만, return구문을 생략해야한다.
+         *  3. 함추의 몸체가 하나의 명령문만 있을 경우, 중괄호도 생략가능하다. 단, return구문은 생략해야한다.
          */
         SquareIF sif4 = a -> a * a;
         System.out.println(sif4.square(4)); // 16
