@@ -38,6 +38,15 @@ public class SequenceEx {
 
         currentSeq = "ZZZ";
         System.out.println(increaseSeq(currentSeq));
+
+        currentSeq = "871";
+        while (true) {
+            currentSeq = increaseSeq(currentSeq);
+            System.out.println("currentSeq = " + currentSeq);
+            if ("Error".equals(currentSeq)) {
+                break;
+            }
+        }
     }
 
     public static String increaseSeq(String seq) {
@@ -74,7 +83,7 @@ public class SequenceEx {
                 seqChar[0] = 'A';
             } else if (seqChar[0] == 'Z') {
                 // 오류 케이스 (000 ~ ZZZ만 채번 중인데 100의 자리가 Z가 넘으면 중복이 발생하므로 오류 케이스에 해당)
-                return "예외발생";
+                return "Error";
             } else {
                 seqChar[0] = (char) ((int) seqChar[0] + 1);
             }
