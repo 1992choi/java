@@ -195,13 +195,13 @@ public class TimeEx {
         formattedString = LocalDateTime.now().format(formatter);
         System.out.println(formattedString); // 2023-09-09 오후 01:50:33
 
-        formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd a hh:mm:ss");
-        formattedString = LocalDateTime.now().format(formatter);
-        System.out.println(formattedString); // 2023-09-09 오후 01:50:33
-
         formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         formattedString = LocalDateTime.now().format(formatter);
         System.out.println(formattedString); // 2023-09-09 13:51:11
+
+        formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분 ss초");
+        formattedString = LocalDateTime.of(2023, 7, 31, 23, 58, 59).format(formatter);
+        System.out.println(formattedString); // 2023년 07월 31일 23시 58분 59초
     }
 
 }
