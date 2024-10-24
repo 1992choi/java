@@ -83,6 +83,19 @@ public class TryWithResources {
         } finally {
             // close()를 명시적으로 호출해줄 필요가 없음.
         }
+
+        /*
+            Try-with-resources를 통한 자원 해제의 장점
+            - 리소스 누수 방지
+              - 실수로 finally를 작성하지 않는 실수를 막아준다.
+            - 가독성 향상
+              - close()가 없어 코드가 더 간결하고 읽기 쉬워진다.
+            - 스코프 범위 한정
+              - 리소스로 사용되는 변수의 스코프가 try로만 한정되어 코드 유지보수가 더 쉬워진다.
+            - 조금 더 빠른 자원해제
+              - 기존 방식 : catch 이후 자원 반납
+              - Try-with-resources : try 블럭이 끝남과 동시에 반납 후 catch 구문 실행
+         */
     }
 
 }
