@@ -77,6 +77,13 @@ public class StackEx {
             result = "오류 수식";
         }
         System.out.println(result); // 오류 수식
+
+
+        /*
+            스택은 Vector를 상속받기 때문에 성능상 좋지 않다.
+              - 요소를 제어할 때, 동기화를 지원하기 때문.
+              - 스택말고 Deque를 사용하면 성능상 이점을 가져갈 수 있다.
+         */
     }
 
 }
