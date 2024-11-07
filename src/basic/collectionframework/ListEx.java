@@ -105,6 +105,28 @@ public class ListEx {
                                * ArrayList의 요소를 순차적으로 삭제할 경우, 뒤에서부터 순차적으로 삭제한다면 배열의 복사가 발생하지 않는다.
             2. LinkedList   - 검색 속도 느림, 추가&삭제 빠름
          */
+
+        /*
+            Arrays.asList()와 List.of()
+            - Arrays.asList()
+              - 자바 1.2부터 존재
+              - 고정된 크기를 가지지만 요소들은 변경할 수 있다.
+              - 고정도 가변도 아닌 애매한 리스트
+            - List.of()
+              - 자바 9부터 존재
+            - 정리
+              - 일반적으로 List.of()가 더 권장되는 방식이지만,
+                'Java 9 이전 버전에서 작업하는 경우' 또는 '요소를 변경해야하는 경우'에는 Arrays.asList()를 사용해야 한다.
+         */
+
+        List<Integer> asList = Arrays.asList(1, 2, 3);
+        // asList.add(4); // 사이즈가 늘거나 줄 수는 없다.
+        asList.set(0, 4); // 요소의 변경은 가능하다.
+        System.out.println(asList); // [4, 2, 3]
+
+        List<Integer> listOf = List.of(1 ,2, 3);
+        // listOf.add(4);  // 사이즈가 늘거나 줄 수는 없다.
+        // listOf.set(0, 4); // 요소의 변경도 불가능하다.
     }
 
 }
