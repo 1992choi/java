@@ -53,7 +53,7 @@ public class Ex01 {
             - 스레드와 실행하고자 하는 태스크를 분리함으로써 좀 더 유연하고 확장 가능한 구조로 구현이 가능하다
          */
         MyRunnable task2 = new MyRunnable();
-        Thread thread5 = new Thread(task);
+        Thread thread5 = new Thread(task2);
         thread5.start();
     }
 
