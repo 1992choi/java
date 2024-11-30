@@ -1,6 +1,6 @@
 package basic.thread;
 
-public class ErrorHandling {
+public class ThreadErrorHandling {
 
     public static void main(String[] args) {
         /*
