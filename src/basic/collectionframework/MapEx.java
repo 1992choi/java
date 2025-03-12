@@ -103,6 +103,54 @@ public class MapEx {
             }
         };
         System.out.println(initMap); // {choi=31, lee=40, kim=20}
+
+        // 자주 사용되는 메서드
+        Map<String, Integer> map = new HashMap<>();
+        map.put("a", 1);
+        System.out.println(map.get("a")); // 1
+        System.out.println(map.getOrDefault("b", 0)); // 0: key에 해당하는 값이 없을 때 defaultValue를 가져온다.
+        // a의 값을 1씩 누적시키는 예제 : map.put("a", map.getOrDefault("a", 0) + 1);
+        // 다른 메서드로도 표현이 가능하다 : map.compute("a", (key, value) -> (value == null) ? 1 : value + 1);
+
+        System.out.println(map.compute("a", (key, value) -> value + 1)); // 2: key에 해당하는 값에 연산을 한다. 'map.put("a", map.get("a") + 1);'과 유사하나 멀티스레드 환경에서는 compute()가 적합하다. put() + get() 방식은 각 메서드가 경쟁 상태 가능성이 있음.
+        System.out.println(map); // {a=2}
+        // System.out.println(map.compute("c", (key, value) -> value + 1)); // NPE: c에 해당하는 값이 없는데 +1 연산을 하므로 NPE 발생.
+
+        /*
+            computeIfAbsent();
+            - 키가 존재하지 않을 때만 새 값을 계산하여 추가한다.
+            - 키가 이미 존재하면 기존 값을 변경하지 않는다.
+         */
+        map.computeIfAbsent("b", key -> 10); // b가 없으므로 b에 10을 계산하여 추가.
+        map.computeIfAbsent("a", key -> 10); // a가 있으므로 아무것도 변경하지 않음.
+        System.out.println(map); // {a=2, b=10}
+
+        /*
+            computeIfPresent();
+            - 키가 존재할 때만 새 값을 계산하여 업데이트한다.
+            - 키가 존재하지 않으면 아무 일도 하지 않는다.
+         */
+        map.computeIfPresent("a", (key, value) -> value + 10); // a가 있으므로 a에 +10 연산.
+        map.computeIfPresent("c", (key, value) -> value + 10); // c가 없으므로 아무것도 변경하지 않음.
+        System.out.println(map); // {a=12, b=10}
+
+        /*
+            putIfAbsent();
+            - 키가 없으면 value를 추가한다.
+            - 키가 있으면 기존 값을 유지하고 아무 동작도 하지 않는다.
+         */
+        map.putIfAbsent("d", 10); // d가 없으므로 새로운 값 10을 추가.
+        map.putIfAbsent("a", 100); // a가 있으므로 값이 변경되지 않음.
+        System.out.println(map); // {a=12, b=10, d=10}
+
+        /*
+            putIfAbsent()와 computeIfAbsent() 차이점
+            - 둘다 값이 없을 때 연산을 진행하는 점에서 유사하다고 느낄 수 있지만, 아래와 같은 차이점이 존재한다.
+            - putIfAbsent() : 값이 고정되어 있을 때 사용
+              - map.putIfAbsent("a", 10); // "a"가 없으면 10을 저장
+            - computeIfAbsent() : 값이 동적으로 계산될 때 사용
+              - map.computeIfAbsent("a", key -> key.length()); // "a"가 없으면 key.length() 값을 계산해서 저장
+         */
     }
 
 }
