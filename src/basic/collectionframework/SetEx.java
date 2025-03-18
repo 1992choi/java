@@ -134,6 +134,25 @@ public class SetEx {
         // 차집합. 공통 요소를 제거
         setA.removeAll(setB);
         System.out.println(setA); // [1, 2, 3]
+
+
+
+        /*
+            Set.of() 주의사항
+            - Set.of()는 불변(immutable) Set을 생성한다.
+            - 불변 리스트는 수정 불가능하며, 내부적으로 안정적인 구조를 유지해야한다.
+            - 따라서 null 값을 허용하면, 예기치 않은 NullPointerException이 발생할 가능성이 커지고, 불변 객체의 신뢰성이 떨어질 수 있기에 null을 허용하지 않는다.
+         */
+        String value1 = "value1";
+        String value2 = null;
+
+        Set<String> set = new HashSet<>();
+        set.add(value1);
+        set.add(value2);
+        System.out.println("set.add 성공"); // set.add 성공
+
+        Set.of(value1, value2);
+        System.out.println("Set.of 성공"); // NPE 발생하여 출력 X
     }
 
 }

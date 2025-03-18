@@ -127,6 +127,30 @@ public class ListEx {
         List<Integer> listOf = List.of(1 ,2, 3);
         // listOf.add(4);  // 사이즈가 늘거나 줄 수는 없다.
         // listOf.set(0, 4); // 요소의 변경도 불가능하다.
+
+
+
+        /*
+            List.of() 주의사항
+            - List.of()는 불변(immutable) 리스트를 생성한다.
+            - 불변 리스트는 수정 불가능하며, 내부적으로 안정적인 구조를 유지해야한다.
+            - 따라서 null 값을 허용하면, 예기치 않은 NullPointerException이 발생할 가능성이 커지고, 불변 객체의 신뢰성이 떨어질 수 있기에 null을 허용하지 않는다.
+         */
+        String str1 = "A";
+        String str2 = "B";
+        String str3 = null;
+
+        List<String> list = new ArrayList<>();
+        list.add(str1);
+        list.add(str2);
+        list.add(str3);
+        System.out.println("list.add 성공"); // list.add 성공
+
+        Arrays.asList(str1, str2, str3);
+        System.out.println("Arrays.asList 성공"); // Arrays.asList 성공
+
+        List.of(str1, str2, str3);
+        System.out.println("List.of 성공"); // NPE 발생하여 출력 X
     }
 
 }
