@@ -22,6 +22,32 @@ package basic.thread;
       - synchronized 블록을 사용하면 한 시점에 오직 하나의 쓰레드만이 동기화 영역에 접근할 수 있도록 보장해준다.
       - synchronized 블록 안에서 참조되는 모든 변수들은 메인 메모리로부터 읽어들여지고 블록을 벗어나면 그 동안 수정된 모든 변수들이 즉시 메인 메모리로 반영될 수 있도록 해준다
       - synchronized 는 상호배제와 함께 가시성의 문제까지 해결할 수 있는 기능을 포함하고 있다. (synchronized 블록 내에서는 volatile 키워드가 없어도 된다)
+
+    - happens-before와 가시성에 대한 측면
+      - 개념
+        - happens-before 관계는 자바 메모리 모델에서 스레드 간의 작업 순서를 정의하는 개념이다.
+        - 만약 A 작업이 B 작업보다 happens-before 관계에 있다면, A 작업에서의 모든 메모리 변경 사항은 B 작업에서 볼 수 있다.
+        - happens-before 관계는 스레드 간의 메모리 가시성을 보장하는 규칙이다.
+      - happens-before 관계가 발생하는 경우
+        - 프로그램 순서 규칙
+          - 단일 스레드 내에서, 프로그램의 순서대로 작성된 모든 명령문은 happens-before 순서로 실행된다.
+          - 예를 들어, 'int a = 1; int b = 2;' 에서 'a = 1' 은 'b = 2' 보다 먼저 실행된다.
+        - volatile 변수 규칙
+          - 한 스레드에서 'volatile' 변수에 대한 쓰기 작업은 해당 변수를 읽는 모든 스레드에 보이도록 한다.
+          - 즉, 'volatile' 변수에 대한 쓰기 작업은 그 변수를 읽는 작업보다 happens-before 관계를 형성한다.
+        - 스레드 시작 규칙
+          - 한 스레드에서 'Thread.start()' 를 호출하면, 해당 스레드 내의 모든 작업은 'start()' 호출 이후에 실행된 작업보다 happens-before 관계가 성립한다.
+        - 스레드 종료 규칙
+          - 한 스레드에서 'Thread.join()' 을 호출하면, join 대상 스레드의 모든 작업은 'join()' 이 반환된 후의 작업보다 happens-before 관계를 가진다.
+        - 인터럽트 규칙
+          - 한 스레드에서 'Thread.interrupt()' 를 호출하는 작업이, 인터럽트된 스레드가 인터럽트를 감지하는 시점의 작업보다 happens-before 관계가 성립한다.
+        - 객체 생성 규칙
+          - 객체의 생성자는 객체가 완전히 생성된 후에만 다른 스레드에 의해 참조될 수 있도록 보장한다.
+          - 즉, 객체의 생성자에서 초기화된 필드는 생성자가 완료된 후 다른 스레드에서 참조될 때 happens-before 관계가 성립한다.
+        - 모니터 락 규칙
+          - 한 스레드에서 'synchronized' 블록을 종료한 후, 그 모니터 락을 얻는 모든 스레드는 해당 블록 내의 모든 작업을 볼 수 있다.
+        - 전이 규칙 (Transitivity Rule)
+          - 만약 A가 B보다 happens-before 관계에 있고, B가 C보다 happens-before 관계에 있다면, A는 C보다 happens-before 관계에 있다.
  */
 public class VolatileEx {
 
