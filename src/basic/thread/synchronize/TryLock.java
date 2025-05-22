@@ -1,4 +1,4 @@
-package basic.thread;
+package basic.thread.synchronize;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -23,7 +23,7 @@ import java.util.concurrent.locks.ReentrantLock;
     - 스레드 1이 락을 획득한 후, 스레드 2는 락을 획득하지 못하여 lock.tryLock()의 수행결과로 false를 반환한다.
     - 이후 스레드 1이 락을 해제하면 스레드 2는 락을 획득하게 되어 lock.tryLock()의 수행결과로 true를 반환한다.
  */
-public class TryLockEx {
+public class TryLock {
 
     public static void main(String[] args) {
         Lock lock = new ReentrantLock();

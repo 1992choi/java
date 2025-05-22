@@ -1,6 +1,5 @@
-package basic.thread;
+package basic.thread.synchronize;
 
-import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /*
@@ -13,10 +12,10 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
     - 읽기락과 쓰기락이 분리되어 있어서 쓰기락이 잡혀있는 동안은 읽기락을 획득할 수 없지만,
       쓰기락의 자원이 해제된 이후에 읽기락 시에는 동시 접근(읽기락끼리만)이 가능하여 성능상 이점을 가지고 갈 수 있다.
  */
-public class ReadWriteLockEx {
+public class ReadWriteLock {
 
     public static void main(String[] args) {
-        ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
+        java.util.concurrent.locks.ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
         SharedData sharedData = new SharedData();
 
         Thread reader1 = new Thread(() -> {

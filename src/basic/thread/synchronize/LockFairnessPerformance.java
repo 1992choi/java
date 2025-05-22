@@ -1,4 +1,4 @@
-package basic.thread;
+package basic.thread.synchronize;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -16,7 +16,7 @@ import java.util.concurrent.locks.ReentrantLock;
     공정성
     - 공정성 락은 성능은 감수하더라도 기아상태(Starvation)를 방지해야 하는 상황이 꼭 필요할 경우에 좋은 해결책이 될 수 있다
  */
-public class LockFairnessPerformanceEx {
+public class LockFairnessPerformance {
 
     private static final int THREAD_COUNT = 4;
     private static final int ITERATIONS = 1000_000;

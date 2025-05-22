@@ -1,4 +1,4 @@
-package basic.thread;
+package basic.thread.synchronize;
 
 /*
     - 개념
@@ -40,7 +40,7 @@ package basic.thread;
           - 최악의 경우 특정 스레드가 너무 오랜기간 락을 획득하지 못할 수 있다.
       - 이런 문제를 해결하기 위해 자바 1.5부터 java.util.concurrent 라는 동시성 문제 해결을 위한 라이브러리 패키지가 추가됐다.
  */
-public class SynchronizedEx {
+public class Synchronized {
 
     private int instanceCount = 0;
     private static int staticCount = 0;
@@ -67,19 +67,19 @@ public class SynchronizedEx {
 
     // 4. static synchronized block
     public static void staticBlock() {
-        synchronized (SynchronizedEx.class) {
+        synchronized (Synchronized.class) {
             staticCount++;
             System.out.println("정적 블록 동기화: " + staticCount);
         }
     }
 
     public static void main(String[] args) {
-        SynchronizedEx example = new SynchronizedEx();
+        Synchronized example = new Synchronized();
 
         new Thread(example::instanceMethod).start();
         new Thread(example::instanceBlock).start();
-        new Thread(SynchronizedEx::staticMethod).start();
-        new Thread(SynchronizedEx::staticBlock).start();
+        new Thread(Synchronized::staticMethod).start();
+        new Thread(Synchronized::staticBlock).start();
     }
 
 }

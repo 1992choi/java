@@ -1,4 +1,4 @@
-package basic.thread;
+package basic.thread.synchronize;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -30,7 +30,7 @@ import java.util.concurrent.locks.ReentrantLock;
       - 락을 해제하면 락 획득을 대기 중인 스레드 중 하나가 락을 획득할 수 있게 된다.
       - 락을 획득한 스레드가 호출해야 하며, 그렇지 않으면 IllegalMonitorStateException이 발생할 수 있다.
  */
-public class LockAndReentrantLockEx {
+public class LockAndReentrantLock {
 
     private int count = 0;
     private Lock lock = new ReentrantLock();
@@ -54,7 +54,7 @@ public class LockAndReentrantLockEx {
     }
 
     public static void main(String[] args) {
-        LockAndReentrantLockEx lockEx = new LockAndReentrantLockEx();
+        LockAndReentrantLock lockEx = new LockAndReentrantLock();
 
         Thread thread1 = new Thread(() -> {
             for (int i = 0; i < 10000; i++) {
