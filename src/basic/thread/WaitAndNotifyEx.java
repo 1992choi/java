@@ -4,6 +4,32 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /*
+    - 생산자 소비자 문제 개념
+      - 생산자(Producer)
+        - 데이터를 생성하는 역할을 한다.
+        - 예를 들어, 파일에서 데이터를 읽어오거나 네트워크에서 데이터를 받아오는 스레드가 생산자 역할을 할 수 있다.
+      - 소비자(Consumer)
+        - 생성된 데이터를 사용하는 역할을 한다.
+        - 예를 들어, 데이터를 처리하거나 저장하는 스레드가 소비자 역할을 할 수 있다.
+      - 버퍼(Buffer)
+        - 생산자가 생성한 데이터를 일시적으로 저장하는 공간이다. 이 버퍼는 한정된 크기를 가지며, 생산자와 소비자가 이 버퍼를 통해 데이터를 주고받는다.
+
+    - 생산자 소비자 문제상황
+      - 생산자가 너무 빠를 때
+        - 버퍼가 가득 차서 더 이상 데이터를 넣을 수 없을 때까지 생산자가 데이터를 생성한다.
+        - 버퍼가 가득 찬 경우 생산자는 버퍼에 빈 공간이 생길 때까지 기다려야 한다.
+      - 소비자가 너무 빠를 때
+        - 버퍼가 비어서 더 이상 소비할 데이터가 없을 때까지 소비자가 데이터를 처리한다.
+        - 버퍼가 비어있을 때 소비자는 버퍼에 새로운 데이터가 들어올 때까지 기다려야 한다.
+
+    - 문제 해결 방법
+      - 버퍼가 가득차서 더 이상 데이터를 넣을 수 없다면, 생산자는 생산을 멈춘다.
+      - 반대로 버퍼에서 가져갈 데이터가 없다면, 소비자는 소비를 멈춘다.
+      - 이 때 한쪽이라도 공유자원에 접근한 상태로 멈추면, 더 이상 락을 획득할 수 없기 때문에 무한 대기상태에 빠질 수가 있다.
+        - 가령 생산자가 락을 획득하고 생산을 하다가 버퍼가 가득차서 생산을 멈춘 후 소비될 때까지 기다릴 경우, 소비자는 락을 획득하지 못하므로 소비를 할 수 없다.
+        - 즉, 소비자는 소비를 할 수도, 생산자는 소비가 되지 않으니 무한정 기다리는 상황이 발생한다.
+      - 위와 같은 문제를 해결하기 위해서는 락을 반납해야하는데, 스레드 간 협력을 통해 문제를 해결할 수 있다.
+
     - 스레드 간 협력 : wait() & notify()
       - wait(), notify(), notifyAll() 은 모니터 객체의 조건변수와 함께 사용해서 동기화를 구현할 수 있는 동기화 메커니즘이라 할 수 있다
       - wait(), notify(), notifyAll() 은 뮤텍스(상호배제) 동기화 기법으로 충족되지 않는 동기화 문제를 해결할 수 있는 협력에 의한 동기화 장치이다
@@ -72,42 +98,44 @@ public class WaitAndNotifyEx {
         consumer.start();
     }
 
-}
+    static class SharedQueue {
 
-class SharedQueue {
+        private Queue<Integer> queue = new LinkedList<>();
+        private final int CAPACITY = 5;  // 큐의 최대 용량
+        private final Object lock = new Object();
 
-    private Queue<Integer> queue = new LinkedList<>();
-    private final int CAPACITY = 5;  // 큐의 최대 용량
-    private final Object lock = new Object();
+        // 아이템을 큐에 추가
+        public void produce(int item) throws InterruptedException {
+            synchronized (lock) {
+                while (queue.size() == CAPACITY) {  // 큐가 가득 찼으면
+                    System.out.println("큐가 가득 찼습니다. 생산 중지...");
+                    lock.wait();  // 대기
+                }
 
-    // 아이템을 큐에 추가
-    public void produce(int item) throws InterruptedException {
-        synchronized (lock) {
-            while (queue.size() == CAPACITY) {  // 큐가 가득 찼으면
-                System.out.println("큐가 가득 찼습니다. 생산 중지...");
-                lock.wait();  // 대기
+                queue.add(item);
+                System.out.println("생산: " + item);
+
+                lock.notifyAll();  // 대기 중인 모든 소비자에게 알림
             }
-
-            queue.add(item);
-            System.out.println("생산: " + item);
-
-            lock.notifyAll();  // 대기 중인 모든 소비자에게 알림
         }
+
+        // 아이템을 큐에서 제거
+        public void consume() throws InterruptedException {
+            synchronized (lock) {
+                while (queue.isEmpty()) {  // 큐가 비어 있으면
+                    System.out.println("큐가 비었습니다. 소비 중지...");
+                    lock.wait();  // 대기
+                }
+
+                int item = queue.poll();
+                System.out.println("소비: " + item);
+
+                lock.notifyAll();  // 대기 중인 모든 생산자에게 알림
+            }
+        }
+
     }
 
-    // 아이템을 큐에서 제거
-    public void consume() throws InterruptedException {
-        synchronized (lock) {
-            while (queue.isEmpty()) {  // 큐가 비어 있으면
-                System.out.println("큐가 비었습니다. 소비 중지...");
-                lock.wait();  // 대기
-            }
-
-            int item = queue.poll();
-            System.out.println("소비: " + item);
-
-            lock.notifyAll();  // 대기 중인 모든 생산자에게 알림
-        }
-    }
-
 }
+
+
