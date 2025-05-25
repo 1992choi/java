@@ -1,4 +1,4 @@
-package basic.thread;
+package basic.thread.producerconsumerproblem;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -61,6 +61,7 @@ import java.util.Queue;
       - 이러한 비효율성을 해결하기 위해 Lock과 ReentrantLock을 사용하면 쉽게 해결할 수 있다.
         - Lock과 ReentrantLock을 사용하여, 생산자는 소비자를 깨우고 소비자는 생산자를 깨우면 비효율을 제거할 수 있다.
           - 생산자와 소비자의 대기 공간을 분리할 수 있다.
+          - 이러한 기능을 API로 제공하는 것이 BlockingQueue 이다.
       - 참고
         - 김영한의 자바 고급1 > Object - wait, notify - 한계
         - 김영한의 자바 고급1 > Lock Condition
