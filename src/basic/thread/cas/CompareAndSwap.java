@@ -10,7 +10,7 @@ public class CompareAndSwap {
         - 락이 걸려 있는 동안 다른 스레드들은 해당 자원에 접근할 수 없고, 락이 해제될 때까지 대기해야 한다. (락 획득과 해제에 시간이 소요되고 이는 성능 이슈가 될 수도 있음)
           - 해당 예제에서 스레드 수와 반복 숫자를 높이면, 성능 차이가 나는 것을 확인할 수 있다.
           - 하지만, synchronized와 AtomicInteger 의 성능 차이가 꽤 나는 것을 확인할 수 있다. (synchronized를 사용하는 것이 성능이 더 좋지 않음)
-          - 둘 다 내부적으로 lock을 사용할 것 같지만 사실 AtomicInteger은 lock을 사용하지 않는다.
+          - 둘 다 내부적으로 lock을 사용할 것 같지만 사실 AtomicInteger은 lock을 사용하지 않는다. (lock을 사용하지 않고 CAS를 사용하기 때문에 빠른 것)
         - 이런 문제를 해결하기 위해 락을 걸지 않고 원자적인 연산을 수행할 수 있는 방법이 있는데, 이것을 CAS(Compare-And-Swap, Compare-And-Set) 연산이라 한다.
 
         CAS
