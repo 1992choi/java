@@ -1,5 +1,7 @@
 package basic.lambda;
 
+import java.util.function.Function;
+
 public class LambdaWithGeneric {
 
     public static void main(String[] args) {
@@ -26,6 +28,18 @@ public class LambdaWithGeneric {
 
         GenericFunction<Integer, Boolean> genericBooleanFunction = num -> num % 2 == 0; // 기존 String과 Integer 조합 이외에도 여러 타입으로 확장이 가능하다.
         System.out.println(genericBooleanFunction.apply(4)); // true
+
+
+
+        // 제네릭을 사용해도 단점이 있다. 개발자마다 비슷한 사유로 여러 함수를 만들 수도 있고, 함수마다 타입이 다르기 때문에 호환이 불가능한 문제도 있다.
+        GenericFunction<String, String> genericFunctionA = s -> s.toUpperCase();
+        // GenericFunction<String, String> genericFunctionB = genericFunctionA; // 동일한 로직이지만 대입 불가.
+
+        // 이러한 문제를 해결하기 위해 자바에서는 기본적인 기능을 가지고 있는 함수를 제공한다. Ex) Function
+        Function<String, String> functionA = s -> s.toUpperCase();
+        Function<String, String> functionB = functionA;
+        System.out.println(functionA.apply("abc")); // ABC
+        System.out.println(functionB.apply("abc")); // ABC
     }
 
     @FunctionalInterface
@@ -45,6 +59,11 @@ public class LambdaWithGeneric {
 
     @FunctionalInterface
     interface GenericFunction<T, R> {
+        R apply(T t);
+    }
+
+    @FunctionalInterface
+    interface GenericFunction2<T, R> {
         R apply(T t);
     }
 
