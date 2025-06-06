@@ -10,7 +10,8 @@ public class IntermediateOperation {
 
         /*
             * 중개 연산(Intermediate Operation)
-              - 스트림 필터링 : filter(), distinct()
+              - 스트림 필터링 : filter(), distinct(), takeWhile(), dropWhile()
+                - takeWhile(), dropWhile() 는 자바9에서 생긴 기능
               - 스트림 변환 : map(), flatMap()
               - 스트림 제한 : limit(), skip()
               - 스트림 정렬 : sorted()
@@ -117,6 +118,21 @@ public class IntermediateOperation {
             2. PYTHON
             3. PYTHON
          */
+
+        /*
+            자바 9에서 추가된 takeWhile()과 dropWhile()
+            - takeWhile : 조건이 true인 동안 요소를 반환하고, false가 되는 순간 이후는 모두 무시
+            - dropWhile : 조건이 true인 동안 요소를 건너뛰고, false가 되는 순간 이후는 모두 반환
+         */
+        System.out.println("\n\n--- takeWhile ---");
+        Stream.of(1, 2, 3, 4, 5, 4, 3, 2, 1)
+                .takeWhile(i -> i < 3)
+                .forEach(i -> System.out.print(i + " ")); // 1 2
+
+        System.out.println("\n\n--- dropWhile ---");
+        Stream.of(1, 2, 3, 4, 5, 4, 3, 2, 1)
+                .dropWhile(i -> i < 3)
+                .forEach(i -> System.out.print(i + " ")); // 3 4 5 4 3 2 1
     }
 
 }
